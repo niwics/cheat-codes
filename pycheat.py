@@ -62,6 +62,44 @@ def random():
     random.shuffle([1, 2, 3, 4], 2)    # pick two random numbers
 
 
+def rpc():
+
+    # XML-RPC = python module for XML-RPC
+    import xmlrpclib
+    # Connects. Ignores path after port: http://myserver.dev:1234/IGNORED
+    server = xmlrpclib.ServerProxy("http://myserver.dev:1234", allow_none=True)
+    # direct method call
+    print server.help()
+    # method name from the variable
+    method_handler = getattr(server, "myMethod")
+    params = {
+        "flag": True,
+        "mystring": "test",
+        "date": xmlrpclib.DateTime("2015-04-20")
+    }
+    res = method_handler(params)
+    if res["status"] / 100 != 2:
+        raise Exception("Invalid RPC call: %s", res)
+
+    # FRPC - Seznam.cz module (http://opensource.seznam.cz/frpc/)
+    # supports numbers > int32
+    import fastrpc
+    # Connects. Alternative params: readTimeout (ms), writeTimeout,
+    #  connectTimeout, useBinary=fastrpc.ON_SUPPORT_ON_KEEP_ALIVE
+    server = fastrpc.ServerProxy("http://myserver.dev:1234/notignored-path")
+    # the rest is similar to XML-RPC
+    try:
+        res = server.myMethod(params)
+        print "status: %s" % res["status"]
+        print res
+    except fastrpc.Fault, e:
+        print e
+    except fastrpc.ProtocolError, e:
+        print e
+    except fastrpc.StreamError, e:
+        print e
+
+
 def main():
     print "Main function called"
 
