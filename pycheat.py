@@ -137,6 +137,15 @@ def generate_date_ranges(start_date_str, end_date_str):
     for dt in rrule(DAILY, dtstart=start, until=end):
         print dt.strftime("%Y-%m-%d")
 
+def working_with_yaml():
+    import yaml
+    # load the config file
+    try:
+        with open('/path/to/yaml-file.yml', 'r') as stream:
+            config = yaml.safe_load(stream)
+    except IOError as e:
+        print >> sys.stderr, "Could not open the file: %s" % e
+
 def multiprocessing_worker(worker_id, sleep_seconds):
     """
     Worker function for multiprocesing
