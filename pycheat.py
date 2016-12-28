@@ -6,6 +6,10 @@ How to use:
 1. Open python shell in the directory where this file resides
 2. import(pycheat)
 3. pycheat.test_function()
+After modification of this file, you should reload the module:
+reload(pycheat)
+
+If you want to call this file directly, try to execute from shell: pycheat.py -h
 """
 
 # Enum class
