@@ -37,13 +37,20 @@ def printing():
     # python3 style
     print("This is {0} and {1}".format(value1, value2))
 
-    # print to stderr
-    #print("Error while parsing the config file {0}".format(value1), file=sys.stderr)    # python3
-    print >> sys.stderr, "Error while parsing the config file {0}".format(value1)    # python 2
+    # printint to stderr
+    # python 2
+    import sys
+    print >> sys.stderr, "This is the testing error, don't panic!"
+    # for python 3:
+    #from __future__ import print_funtion
+    #print("This is the testing error, don't panic!, file=sys.stderr)
 
     # print with leading zeros
-    for i in range(15):
+    for i in range(5):
         print "%02d" % i
+
+    # print dict (named args)
+    print "User %(username)s is from %(city)s. I love %(city)s city!" % {'username': "niwics", 'city': "Brno"}
 
 def regexps():
     # Regexps
