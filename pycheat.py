@@ -184,7 +184,7 @@ def main():
     import argparse
     parser = argparse.ArgumentParser()
     # group of exclusive options
-    sp = parser.add_subparsers()
+    sp = parser.add_subparsers(dest='subparser_value')
     sp.add_parser('start', help='Starts %(prog)s daemon')
     sp.add_parser('stop', help='Stops %(prog)s daemon')
     sp.add_parser('restart', help='Restarts %(prog)s daemon')
@@ -196,15 +196,17 @@ def main():
     parser.add_argument('--protocol', help='some help text', choices=['http', 'https'])
     # type setting
     parser.add_argument('--workers', help='Number of parallel workers', type=int, default=1)
-    # bool value (store_true set True and it omits the value; similar is store_false and store_const)
+    # bool value (store_true sets True when flag is present and it omits the value;
+    #  similar is store_false and store_const)
     parser.add_argument('--dry-run', help='This is bool flag', action='store_true')
+    # parse arguments (in case of invalid input, it prints the help and exits)
     args = parser.parse_args()  # accessing: args.myparam
     # you cannot use reserved keywords like "from" (ex. args.from) - in that case you need a dict:
     # source: https://parezcoydigo.wordpress.com/2012/08/04/from-argparse-to-dictionary-in-python-2-7/
     opts = vars(args)           # accessing: opts['myparam']
-    # in case of invalid input, it prints the help and exits
-    if len(USER_IDS) == len(args.entities):
-        print "WARNING: Number of users should not be the multiple of number of entities (because of caching)!"
+    print "Current mode: %s" % opts['subparser_value']
+    if opts['subparser_value'] == 'start':
+        print "Yes, we launched!"
 
     # return codes
     import sys
@@ -214,11 +216,10 @@ def main():
     # EX_USAGE - bad program usage
     # EX_DATAERR - incorrect input data
     # EX_UNAVAILABLE - required service is unavailable
-    # EX_SOFTWARE - software error
+    # EX_SOFTWARE - software runtime error
     # EX_CONFIG - configuration error
     # EX_NOTFOUND
     sys.exit(os.EX_OK)
-
 
 
 if __name__ == "__main__":
