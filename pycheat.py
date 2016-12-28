@@ -13,9 +13,9 @@ If you want to call this file directly, try to execute from shell: pycheat.py -h
 """
 
 # Enum class
-# usage: print Materials.Matte
-class Materials:
-    Shaded, Shiny, Transparent, Matte = range(4)
+# usage: print Colours.Red
+class Colours:
+    Red, Green, Blue, White = range(4)
 
 class MyClass:
 
