@@ -77,12 +77,46 @@ def regexps():
     print re.sub(r"@", r"(at)", "me@email.com")   # me(at)email.com
 
 def dates():
-    # print month with leading zeros
     import datetime
+
     today_dt = datetime.datetime.now() # type datetime
     today_date = date.today()   # type date
-    today_date2 = today_dt.date()
+    today_date2 = today_dt.date()   # datetime to date
+    print "Current ISO date without time: %s" % today_date  # "2016-11-14"
+    # print month with leading zeros
     print "This is month: %s" % today_dt.strftime("%-m")   # alternative in print: "%02d"
+
+    # custom formatting
+    # https://docs.python.org/2/library/datetime.html#strftime-and-strptime-behavior
+    print today_dt.strftime("Today is the %d of %b in %y")  # Today is the 18 of Nov in 2016
+
+    # ISO dates to datetime
+    import dateutil.parser
+    # more robust version
+    dt = dateutil.parser.parse("2016-11-16 09:07:56")
+    # load from the specific format
+    dt2 = datetime.datetime.strptime("2016-11-16", "%Y-%m-%d" )
+    print dt    # datetime.datetime(2016, 11, 16, 9, 7, 56)
+
+def rpc_dates():
+    # FRPC datetime: http://fastrpc.sourceforge.net/doc/python/classDateTime.html
+    # loading datetime using xmlrpclib interface from frpc server returns
+    # xmlrpclib.DateTime, which internally holds the value in invalid format
+    # and cannot be used normally (ex. timetuple call)
+    import xmlrpclib
+    import fastrpc  # fastrpc.sourceforge.net
+    d_x = xmlrcplib.DateTime("20161115T15:34:53+0100")
+    print d_x # <DateTime '20161115T15:34:53+0100' at 7f4ab928d248>
+    print type(d_x) # silly one: <type 'instance'>
+    print d_x.timetuple() # Traceback: ValueError: unconverted data remains: +0100
+    # convert to the proper frpc.DateTime
+    d_f = fastrpc.DateTime(str(d_x))
+    print d_f   # 20161115T15:34:53+0100
+    print type(d_x) # <type 'DateTime'>
+    # direct print using fastrpc.Datetime attributes
+    print "In %d at %02d:%02d" % (df.year, df.hour, df.min) # In 2016 at 15:34
+    # convert to the datetime
+    d_dt = datetime.datetime.fromtimestamp(d_f.unixTime)
 
 
 def generate_date_ranges(start_date_str, end_date_str):
