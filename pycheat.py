@@ -243,6 +243,44 @@ def rpc():
         print e
 
 
+def jinja():
+    """
+    Jinja2 templating engine usage.
+    """
+    template_path = '/tmp/pycheat-jinja-template.html'
+    output_path = '/tmp/pycheat-jinja-output.html'
+
+    # create the testing template
+    with open(template_path, 'w') as f:
+        f.write("""Testing template with {{athlet_type}}:
+{% for a in athlets %}
+{{a.name}} is from {{a['country']}}
+{% endfor %}""")
+
+    # testing dict with variables
+    context = {
+        'athlet_type': 'tennis players',
+        'athlets': [
+            {'name': 'Roger Federer', 'country': 'SUI'},
+            {'name': 'Rafael Nadal', 'country': 'ESP'},
+            {'name': 'Novak Djokovic', 'country': 'SRB'}
+        ]
+    }
+
+    import jinja2
+    import os
+    # render the template
+    template_dir, template_filename = os.path.split(template_path)
+    loader = jinja2.FileSystemLoader(template_dir)
+    jinja_env = jinja2.Environment(loader=loader, trim_blocks=True,
+                                  lstrip_blocks=True)
+    template = jinja_env.get_template(template_filename)
+    rendered_output = template.render(context)
+    print rendered_output
+    with open(output_path, 'w') as f:
+        f.write(rendered_output)
+
+
 def main():
     print "Main function called"
 
