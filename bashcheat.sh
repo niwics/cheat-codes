@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# how to reload the .bashrc or .profile files (Linux + OS X)
+#source ~/.profile
 
 # dates =====================
 # yesterday
