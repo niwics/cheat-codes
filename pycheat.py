@@ -4,7 +4,7 @@
 """
 How to use:
 1. Open python shell in the directory where this file resides
-2. import(pycheat)
+2. import pycheat
 3. pycheat.test_function()
 After modification of this file, you should reload the module:
 reload(pycheat)
@@ -55,6 +55,18 @@ def printing():
 
     # print dict (named args)
     print "User %(username)s is from %(city)s. I love %(city)s city!" % {'username': "niwics", 'city': "Brno"}
+
+
+def logging():
+    v1 = "variable for testing"
+    v2 = 123
+    import logging
+    # logger names can be hierarchically set
+    log = logging.getLogger("app_name." + __name__)
+    log.debug("Debug message with variables %s - %d", v1, v2)
+    log.info("Info message with variables %s - %d", v1, v2)
+    log.warning("Warning message with variables %s - %d", v1, v2)
+    log.error("Error message with variables %s - %d", v1, v2)
 
 def regexps():
     # Regexps
