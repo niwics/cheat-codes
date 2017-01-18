@@ -34,6 +34,19 @@ def datatypes():
     my_variable = 3.14
     isinstance(my_variable, numbers.Number)
 
+    # determine iterables - str, dict, list...
+    my_var = [1, 2, 3]
+    import collections
+    print "Is my_var iterable? - %s" % isinstance(my_var, collections.Iterable)
+
+def dictionaries():
+    # create
+    number_one_players = {'man': 'Andy Murray', 'woman': 'Angelique Kerber'}
+
+    # merging dicts
+    en = {1: 'one', 2: 'two'}
+    cs = {2: 'dve', 3: 'tri'}   # overwrites the key 2
+    en.update(cs)   # {1: 'one', 2: 'dve', 3: 'tri'}
 
 def printing():
     value1 = "val1"
