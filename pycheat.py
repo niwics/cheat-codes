@@ -272,10 +272,13 @@ def jinja():
     # render the template
     template_dir, template_filename = os.path.split(template_path)
     loader = jinja2.FileSystemLoader(template_dir)
+    # whitespace control:
+    # http://jinja.pocoo.org/docs/2.9/templates/#whitespace-control
     jinja_env = jinja2.Environment(loader=loader, trim_blocks=True,
                                   lstrip_blocks=True)
     template = jinja_env.get_template(template_filename)
     rendered_output = template.render(context)
+    # print and write the result to the file
     print rendered_output
     with open(output_path, 'w') as f:
         f.write(rendered_output)
