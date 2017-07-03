@@ -282,6 +282,32 @@ def random():
     random.shuffle([1, 2, 3, 4], 2)    # pick two random numbers
 
 
+def write_file():
+    # create the testing template
+    with open('/tmp/pycheat-test-file', 'w') as f:
+    f.write("test line no.1\ntest line no.2\nline 3\nanother line!")
+
+
+def read_file():
+    write_file()
+    with open('/tmp/pycheat-test-file') as f:
+        # read all at once to the list of lines
+        lines_list = f.readlines()
+        print lines_list
+        # seek to the file beginging
+        f.seek(0)
+        # iterate over lines - do not load the whole file to the memory
+        print "Iterate over lines:\n--------------"
+        for line in f:
+            print line
+
+
+def file_info():
+    import os
+    statinfo = os.stat('somefile.txt')
+    statinfo.st_size # 926L (size in bytes)
+
+
 def rpc():
 
     # XML-RPC = python module for XML-RPC
