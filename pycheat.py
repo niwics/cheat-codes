@@ -359,7 +359,7 @@ def jinja():
     # print and write the result to the file
     print rendered_output
     with open(output_path, 'w') as f:
-        f.write(rendered_output)
+        f.write(rendered_output.encode('utf-8'))
 
 
 def main():
