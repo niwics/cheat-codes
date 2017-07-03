@@ -152,11 +152,12 @@ def regexps():
     # simple replacing
     print re.sub(r"@", r"(at)", "me@email.com")   # me(at)email.com
 
+
 def dates():
     import datetime
 
     today_dt = datetime.datetime.now() # type datetime
-    today_date = date.today()   # type date
+    today_date = datetime.date.today()   # type date
     today_date2 = today_dt.date()   # datetime to date
     print "Current ISO date without time: %s" % today_date  # "2016-11-14"
     # print month with leading zeros
@@ -164,6 +165,7 @@ def dates():
 
     # custom formatting
     # https://docs.python.org/2/library/datetime.html#strftime-and-strptime-behavior
+    # Fotmats help: http://strftime.org/
     print today_dt.strftime("Today is the %d of %b in %y")  # Today is the 18 of Nov in 2016
 
     # ISO dates to datetime
@@ -173,6 +175,26 @@ def dates():
     # load from the specific format
     dt2 = datetime.datetime.strptime("2016-11-16", "%Y-%m-%d" )
     print dt    # datetime.datetime(2016, 11, 16, 9, 7, 56)
+
+
+def generate_date_ranges(start_date_str, end_date_str):
+    """
+    In:
+    Inspired by: http://stackoverflow.com/questions/1060279/iterating-through-a-range-of-dates-in-python
+    """
+    import datetime
+    from dateutil.rrule import rrule, DAILY
+
+    # working with datetime
+    #https://docs.python.org/2/library/datetime.html
+
+
+    start = datetime.datetime.strptime(start_date_str, "%Y-%m-%d")
+    end = datetime.datetime.strptime(end_date_str, "%Y-%m-%d")
+
+    for dt in rrule(DAILY, dtstart=start, until=end):
+        print dt.strftime("%Y-%m-%d")
+
 
 def rpc_dates():
     # FRPC datetime: http://fastrpc.sourceforge.net/doc/python/classDateTime.html
@@ -195,23 +217,7 @@ def rpc_dates():
     d_dt = datetime.datetime.fromtimestamp(d_f.unixTime)
 
 
-def generate_date_ranges(start_date_str, end_date_str):
-    """
-    In:
-    Inspired by: http://stackoverflow.com/questions/1060279/iterating-through-a-range-of-dates-in-python
-    """
-    import datetime
-    from dateutil.rrule import rrule, DAILY
 
-    # working with datetime
-    #https://docs.python.org/2/library/datetime.html
-
-
-    start = datetime.datetime.strptime(start_date_str, "%Y-%m-%d")
-    end = datetime.datetime.strptime(end_date_str, "%Y-%m-%d")
-
-    for dt in rrule(DAILY, dtstart=start, until=end):
-        print dt.strftime("%Y-%m-%d")
 
 def working_with_yaml():
     import yaml
