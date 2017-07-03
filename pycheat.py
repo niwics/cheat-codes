@@ -217,6 +217,10 @@ def rpc_dates():
     d_dt = datetime.datetime.fromtimestamp(d_f.unixTime)
 
 
+def paths():
+    import os
+    relative_path_to_script = \
+        os.path.join(os.path.dirname(__file__), '../another-dir/other-file')
 
 
 def working_with_yaml():
