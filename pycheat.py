@@ -302,7 +302,8 @@ def main():
 
     # argparse example
     import argparse
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(description='Program description which'
+                                     ' will be displayed in help.')
     # group of exclusive options
     sp = parser.add_subparsers(dest='subparser_value')
     sp.add_parser('start', help='Starts %(prog)s daemon')
@@ -323,7 +324,7 @@ def main():
     args = parser.parse_args()  # accessing: args.myparam
     # you cannot use reserved keywords like "from" (ex. args.from) - in that case you need a dict:
     # source: https://parezcoydigo.wordpress.com/2012/08/04/from-argparse-to-dictionary-in-python-2-7/
-    opts = vars(args)           # accessing: opts['myparam']
+    opts = vars(args)   # accessing: opts['myparam']
     print "Current mode: %s" % opts['subparser_value']
     if opts['subparser_value'] == 'start':
         print "Yes, we launched!"
