@@ -40,6 +40,15 @@ def datatypes():
     import collections
     print "Is my_var iterable? - %s" % isinstance(my_var, collections.Iterable)
 
+
+def lists():
+    l = [1, 2, 'three'] # old-style: l = list(1, 2, 'three')
+    # filter the list
+    int_list = [1, 2, 3, 4]
+    print "Even numbers: %s" % filter(lambda i: i % 2 == 0, int_list)
+    print "Even numbers: %s" % [i for i in int_list if i % 2 == 0]
+
+
 def dictionaries():
     # create
     number_one_players = {'man': 'Andy Murray', 'woman': 'Angelique Kerber'}
@@ -48,6 +57,21 @@ def dictionaries():
     en = {1: 'one', 2: 'two'}
     cs = {2: 'dve', 3: 'tri'}   # overwrites the key 2
     en.update(cs)   # {1: 'one', 2: 'dve', 3: 'tri'}
+
+    # ordered dicts
+    orig = {
+        'roger': {'gs_titles': 17},
+        'rafa': {'gs_titles': 14},
+        'nole': {'gs_titles': 12},
+        'andy': {'gs_titles': 3}
+        }
+
+    # dictionary sorted by key
+    OrderedDict(sorted(d.items(), key=lambda t: t[0]))
+    # {andy: ..., nole: ..., rafa: ..., roger: ...}
+    OrderedDict(sorted(d.items(), key=lambda t: t['gs_titles']))
+    # {roger: ..., rafa: ..., nole: ..., andy: ...}
+
 
 def printing():
     value1 = "val1"
