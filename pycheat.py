@@ -104,6 +104,12 @@ def printing():
     # print dict (named args)
     print "User %(username)s is from %(city)s. I love %(city)s city!" % {'username': "niwics", 'city': "Brno"}
 
+    # Pretty-printing
+    hierarchical_dict = {'a': 1, 'b': [{'ba': 2, 'bb': 3}]}
+    import pprint
+    pp = pprint.PrettyPrinter(indent=5)
+    pp.pprint(hierarchical_dict)
+
 
 def logging():
     v1 = "variable for testing"
