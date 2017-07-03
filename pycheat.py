@@ -117,10 +117,20 @@ def logging():
     import logging
     # logger names can be hierarchically set
     log = logging.getLogger("app_name." + __name__)
+    log.setLevel("INFO")
+    # create console handler
+    ch = logging.StreamHandler()
+    # create formatter and add it to the handlers
+    # display just seconds: add second parameter to Formatter: "%Y-%m-%d %H:%M:%S"
+    formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s {%(name)s: %(lineno)s}')
+    ch.setFormatter(formatter)
+    # add the handlers to the logger
+    log.addHandler(ch)
     log.debug("Debug message with variables %s - %d", v1, v2)
     log.info("Info message with variables %s - %d", v1, v2)
     log.warning("Warning message with variables %s - %d", v1, v2)
     log.error("Error message with variables %s - %d", v1, v2)
+
 
 def regexps():
     # Regexps
