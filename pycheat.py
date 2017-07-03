@@ -73,6 +73,13 @@ def dictionaries():
     # {roger: ..., rafa: ..., nole: ..., andy: ...}
 
 
+def classes():
+    # abstract methods
+    class Base(object):
+        def go(self):
+            raise NotImplementedError("Method is not implemented.")
+
+
 def printing():
     value1 = "val1"
     value2 = "val2"
