@@ -28,6 +28,7 @@ class MyClass:
         one_day_maybe =  datetime.datetime.strptime("2016-06-13", "%Y-%m-%d")
         today = datetime.datetime.now()
 
+
 def datatypes():
     import numbers
     # is the variable a number?
@@ -171,6 +172,7 @@ def working_with_yaml():
     except IOError as e:
         print >> sys.stderr, "Could not open the file: %s" % e
 
+
 def multiprocessing_worker(worker_id, sleep_seconds):
     """
     Worker function for multiprocesing
@@ -181,6 +183,7 @@ def multiprocessing_worker(worker_id, sleep_seconds):
     msg = "Worker #%s finished" % worker_id
     print msg
     return msg
+
 
 def multiprocessing_pool_of_workers():
     """
@@ -204,6 +207,7 @@ def multiprocessing_process():
         p = Process(target=multiprocessing_worker, args=(worker_id, num_workers))
         jobs.append(p)
         p.start()
+
 
 def random():
     import random
@@ -285,6 +289,7 @@ def jinja():
     # render the template
     template_dir, template_filename = os.path.split(template_path)
     loader = jinja2.FileSystemLoader(template_dir)
+
     # whitespace control:
     # http://jinja.pocoo.org/docs/2.9/templates/#whitespace-control
     jinja_env = jinja2.Environment(loader=loader, trim_blocks=True,
