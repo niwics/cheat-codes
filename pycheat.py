@@ -308,6 +308,15 @@ def file_info():
     statinfo.st_size # 926L (size in bytes)
 
 
+def requests_parsing():
+    import requests
+    request_url = "http://testing-page.com/slug/?querystring"
+    timeout = 2 # seconds
+    r = requests.get(request_url, timeout=timeout)
+    if r.status_code != 200:
+        print "Error in the request: %s" % r
+
+
 def rpc():
 
     # XML-RPC = python module for XML-RPC
