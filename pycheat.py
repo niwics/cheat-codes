@@ -341,6 +341,22 @@ def requests_parsing():
     #response attributes: r.headers, r.encoding, r.text, r.json()
 
 
+def sftp_uploading():
+    """
+    ##### TODO
+    """
+    import paramiko
+    ssh = paramiko.SSHClient()
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    ssh.load_host_keys(os.path.expanduser(os.path.join("~", ".ssh", "known_hosts")))
+    ssh.connect(server, username='myuser', password='mypass')
+    sftp = ssh.open_sftp()
+    print "Copying %s to %s:%s" % (src, server, dst)
+    sftp.put(src, dst, callback=None)
+    sftp.close()
+    ssh.close()
+
+
 def rpc():
 
     # XML-RPC = python module for XML-RPC
