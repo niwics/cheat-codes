@@ -437,6 +437,9 @@ def main():
     # EX_OK
     # EX_USAGE - bad program usage
     # EX_DATAERR - incorrect input data
+    # EX_NOINPUT - input file does nor exist or is not readable
+    # EX_OSFILE - file does nor exist or is not readable
+    # EX_IOERR - generic IO error
     # EX_UNAVAILABLE - required service is unavailable
     # EX_SOFTWARE - software runtime error
     # EX_CONFIG - configuration error
