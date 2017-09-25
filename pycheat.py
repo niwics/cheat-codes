@@ -315,6 +315,7 @@ def requests_parsing():
     r = requests.get(request_url, timeout=timeout)
     if r.status_code != 200:
         print "Error in the request: %s" % r
+    #response attributes: r.headers, r.encoding, r.text, r.json()
 
 
 def rpc():
