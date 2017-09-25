@@ -92,14 +92,50 @@ def classes():
 
 
 def iterate_object():
-    class IterClass(object):
+    """
+    Examples: https://stackoverflow.com/questions/4019971/how-to-implement-iter-self-for-a-container-object-python
+    """
+
+    # Simplest case - use generator function (with yield)
+    class IterClass1(object):
         def __iter__(self):
            yield 5
            for x in range(3):
               yield x
-    iter_class_object = IterClass()
+    iter_class_object = IterClass1()
     # will print the sequence: 5, 0, 1, 2
     for val in iter_class_object:
+        print val
+
+    # Inherit from appropriate collection
+    from collections import Sequence
+    class MyContainer(Sequence):
+        def __init__(self, *data):
+            self.data = list(data)
+        def __getitem__(self, index):
+            return self.data[index]
+        def __len__(self):
+            return len(self.data)
+    cont = MyContainer(1, "two", 3, 4.0)
+    print "\nContainer 2:"
+    for val in cont:
+        print val
+
+    # If container is its own iterator, just implement next method
+    from collections import Iterator
+    class IterClass2(Iterator):
+        def __init__(self, data):
+           self.data = data
+        def next(self):
+            if not self.data:
+               raise StopIteration
+            return self.data.pop()
+        # alternative when we do not want to use base Iterator class:
+        #def __iter__(self):
+        #    return self
+    iterable_object = IterClass2(["a", 2, 3])
+    print "\nContainer 3:"
+    for val in iterable_object:
         print val
 
 
