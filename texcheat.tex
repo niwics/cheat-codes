@@ -1,0 +1,49 @@
+% This is Tex file cheat sheet
+% This is single line comment
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Text styles
+% http://tex.stackexchange.com/questions/41681/correct-way-to-bold-italicize-text
+This will be the \textbf{bold text}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Style for source code
+\usepackage{listings}
+\lstset{upquote=true}
+\usepackage{color}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\lstset{frame=tb,
+	language=Sql,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\small\ttfamily},
+	numbers=none,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{dkgreen},
+	commentstyle=\color{blue},
+	stringstyle=\color{gray},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=3
+}
+
+% usage - block
+\begin{lstlisting}
+// Hello.py
+class MyClass:
+
+    def __init__(self, attr):
+        self.my_attr = attr
+\end{lstlisting}
+
+% usage - inline
+\lstinline|DROP TABLE mytable|
+% inline with colorbox and changed font color
+\colorbox{blue}{\lstinline[basicstyle=\ttfamily\color{white}]|DROP TABLE mytable|} 
+% inline mode does not respect box widths - it does not break lines
+% \lstinline[breaklines=true] does not work for me
+\begin{sloppypar}
+  \lstinline|ALTER TABLE mytable DROP PARTITION WHERE `year` = 2017|
+\end{sloppypar}
