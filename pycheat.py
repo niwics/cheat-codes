@@ -91,6 +91,18 @@ def classes():
             raise NotImplementedError("Method is not implemented.")
 
 
+def iterate_object():
+    class IterClass(object):
+        def __iter__(self):
+           yield 5
+           for x in range(3):
+              yield x
+    iter_class_object = IterClass()
+    # will print the sequence: 5, 0, 1, 2
+    for val in iter_class_object:
+        print val
+
+
 def printing():
     value1 = "val1"
     value2 = "val2"
