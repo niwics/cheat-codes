@@ -56,7 +56,16 @@ def dictionaries():
     # merging dicts
     en = {1: 'one', 2: 'two'}
     cs = {2: 'dve', 3: 'tri'}   # overwrites the key 2
+    # Python 2
     en.update(cs)   # {1: 'one', 2: 'dve', 3: 'tri'}
+    # Python 3
+    #en = {**en, **cs}
+
+    # zip two lists into the dict
+    keys = ['a', 'b', 'c']
+    values = [1, 2, 3]
+    dictionary = dict(zip(keys, values))
+    print dictionary    #{'a': 1, 'b': 2, 'c': 3}
 
     # ordered dicts
     from collections import OrderedDict
