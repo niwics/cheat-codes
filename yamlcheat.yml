@@ -1,0 +1,12 @@
+Array of dictionary items:
+
+models:
+- model: a
+  type: x
+- model: b
+  type: y
+
+Key: |
+  this is my very very very
+  long string
+  more info - http://stackoverflow.com/questions/3790454/in-yaml-how-do-i-break-a-string-over-multiple-lines
