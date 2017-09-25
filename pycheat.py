@@ -285,7 +285,7 @@ def random():
 def write_file():
     # create the testing template
     with open('/tmp/pycheat-test-file', 'w') as f:
-    f.write("test line no.1\ntest line no.2\nline 3\nanother line!")
+        f.write("test line no.1\ntest line no.2\nline 3\nanother line!")
 
 
 def read_file():
