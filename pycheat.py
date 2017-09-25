@@ -59,6 +59,7 @@ def dictionaries():
     en.update(cs)   # {1: 'one', 2: 'dve', 3: 'tri'}
 
     # ordered dicts
+    from collections import OrderedDict
     orig = {
         'roger': {'gs_titles': 17},
         'rafa': {'gs_titles': 14},
@@ -67,10 +68,11 @@ def dictionaries():
         }
 
     # dictionary sorted by key
-    OrderedDict(sorted(d.items(), key=lambda t: t[0]))
-    # {andy: ..., nole: ..., rafa: ..., roger: ...}
-    OrderedDict(sorted(d.items(), key=lambda t: t['gs_titles']))
-    # {roger: ..., rafa: ..., nole: ..., andy: ...}
+    orddict1 = OrderedDict(sorted(orig.items(), key=lambda t: t[0]))
+    print orddict1  # {andy: ..., nole: ..., rafa: ..., roger: ...}
+    # dictionary sorted by GS titles
+    orddict2 = OrderedDict(sorted(orig.items(), key=lambda t: t[1]['gs_titles']))
+    print orddict2  # {roger: ..., rafa: ..., nole: ..., andy: ...}
 
 
 def classes():
