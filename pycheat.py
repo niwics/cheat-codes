@@ -508,7 +508,7 @@ def main():
     # return codes
     import sys
     import os
-    # useful return codes: (more on https://docs.python.org/2/library/os.html)
+    # useful return codes: (more on https://docs.python.org/3/library/os.html#os._exit)
     # EX_OK
     # EX_USAGE - bad program usage
     # EX_DATAERR - incorrect input data
