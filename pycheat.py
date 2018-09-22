@@ -25,7 +25,7 @@ class MyClass:
     def date_magic(self):
         import datetime
 
-        one_day_maybe =  datetime.datetime.strptime("2016-06-13", "%Y-%m-%d")
+        one_day_maybe =  datetime.datetime.strptime("2018-09-21 21:49:55", "%Y-%m-%d %H:%M:%S")
         today = datetime.datetime.now()
 
 
@@ -142,8 +142,13 @@ def iterate_object():
 def printing():
     value1 = "val1"
     value2 = "val2"
+    titles = {'roger': 20, 'rafa': 16}
     # python3 style
-    print("This is {0} and {1}".format(value1, value2))
+    print('Just print format args positionally: {}, {}'.format(1, 2))
+    print("Printing args from defined position {1} and {0}".format(value1, value2))
+    print("Roger has {roger} GS titles and Rafa {rafa}".format(roger=20, rafa=16))
+    print("Roger has {roger} GS titles and Rafa {rafa}".format(**titles))
+    print('Escaping the curly braces by doubling them - {{}} and normal arg: {}'.format('myarg'))
 
     # printint to stderr
     # python 2
