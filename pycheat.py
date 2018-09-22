@@ -12,6 +12,9 @@ reload(pycheat)
 If you want to call this file directly, try to execute from shell: pycheat.py -h
 """
 
+# Module constant - https://www.python.org/dev/peps/pep-0008/#constants
+MY_MODULE_CONSTANT = "Module constant"
+
 # Exceptions
 class MyException(Exception):
     '''
