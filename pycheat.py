@@ -12,6 +12,21 @@ reload(pycheat)
 If you want to call this file directly, try to execute from shell: pycheat.py -h
 """
 
+# Exceptions
+class MyException(Exception):
+    '''
+    All exceptions are subclasses of BaseException.
+    Exception is also subclass of BaseException and is the parent class
+    for all non-exit exceptions.
+    '''
+    pass
+
+def exceptions():
+    try:
+        raise MyException('Some description')
+    except MyException as e:
+        print('The error occurred: {}').format(e)
+
 # Enum class
 # usage: print Colours.Red
 class Colours:
