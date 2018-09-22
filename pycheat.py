@@ -231,7 +231,7 @@ def dates():
     import dateutil.parser
     # more robust version
     dt = dateutil.parser.parse("2016-11-16 09:07:56")
-    # load from the specific format
+    # load from the specific format (format ref: https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior)
     dt2 = datetime.datetime.strptime("2016-11-16", "%Y-%m-%d" )
     print dt    # datetime.datetime(2016, 11, 16, 9, 7, 56)
 

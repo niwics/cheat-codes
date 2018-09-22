@@ -53,6 +53,7 @@ done
 for day in {1..30};
 do
   echo $day
+  # zero padding
   day_pad=`printf "%02d" $day`
   echo "Day with zero padding: ${day_pad}"
 done
