@@ -74,6 +74,15 @@ def datatypes():
     import collections
     print "Is my_var iterable? - %s" % isinstance(my_var, collections.Iterable)
 
+    # strings
+    # interpolation can be made with both single or double quotes, but usually used with double
+    single_quote_str = 'single quotes for short strings typically not intended for humans'
+    double_quote_str = "double quotes for longer strings typically intended for humans"
+    # raw string literal - the string is used directly without escaping and interpolations
+    raw_str = r'this is raw string - all special characters has no meaning - {} abcd \n\n etc.'
+    # unicode string
+    unicode_str = u'my unicode string ěščřžáíé'
+
 
 def lists():
     l = [1, 2, 'three'] # old-style: l = list(1, 2, 'three')
@@ -561,5 +570,5 @@ def main():
     sys.exit(os.EX_OK)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
