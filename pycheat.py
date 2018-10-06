@@ -47,6 +47,22 @@ class MyClass:
         today = datetime.datetime.now()
 
 
+def docstrings(param1, param2):
+    """This is first line - doc string should start here.
+    Docstrings should be enclosed by three double quotes.
+    Docstrings are used also for introspection.
+
+    Example usage of reST (=reStructuredText) documenting variables:
+
+    :param timestamp: formatted date to display
+    :type timestamp: str or unicode
+    :returns: formatted string
+    :rtype: str or unicode
+
+    Last line of docstring should contain just three double quotes.
+    """
+    return "example string"
+
 def datatypes():
     import numbers
     # is the variable a number?
