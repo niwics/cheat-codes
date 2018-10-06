@@ -527,7 +527,10 @@ def main():
     # argparse example
     import argparse
     parser = argparse.ArgumentParser(description='Program description which'
-                                     ' will be displayed in help.')
+                                     ' will be displayed in help.',
+                                     # ArgumentDefaultsHelpFormatter for displaying
+                                     # default values in help
+                                     formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     # group of exclusive options
     sp = parser.add_subparsers(dest='subparser_value')
     sp.add_parser('start', help='Starts %(prog)s daemon')
