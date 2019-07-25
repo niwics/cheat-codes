@@ -202,7 +202,9 @@ def printing():
     #print("This is the testing error, don't panic!, file=sys.stderr)
 
     # rounding floats
-    print "%.1f" % 3.141
+    print("%.1f" % 3.141)
+    # round float to decimal
+    print('Rounded to decimal: {.0f}'.format(3.14))
 
     # print with leading zeros
     for i in range(5):
