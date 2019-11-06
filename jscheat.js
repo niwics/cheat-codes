@@ -45,6 +45,10 @@
   */
  console.log(typeof 42); // expected output: "number"
  typeof (() => {}) === 'function'; // true
+ // convert string to integer
+ const myInt = parseInt("7");
+ // weird adding
+ const weirdResult = "7" + 1; // "71"
  // object = object
  Object.prototype.toString.call(myObject); // [object Null]
 
@@ -80,23 +84,50 @@ for (let prop in myObject) {
  let words = ['one', 'two', 'three'];
  words.push("four");
  words = words.filter(word => word.length > 3);
- // includes (in array) function
+ // includes (in array) function (test whether item is in array)
  words.includes('one');
+ // merge=concat two arrays
+ const moreWords = ['five', 'six'];
+ const allWords = words.concat(moreWords);
+ // sorting items - non-unicode/local aware
+ const sortedWordsBasic = words.sort();
+ // sorting items - unicode/local aware
+ const sortedWordsUnicode = words.sort((a, b) => a.localeCompare(b));
 
+
+// iterating the array
+// 1: old-style for cycle
+for (let i = 0; i < words.length; i++) {
+  console.log(words[i]);
+}
+// 2. using forEach (and every, some, filter, map, reduce, reduceRight)
+words.forEach(e => {
+  console.log(e);
+});
+// 3. for..in - loops through the properties of an object - see Objects
+// 4. for..of - ES2015+, loops through the values of an iterable objects
+for (e of words)
+  console.log(e);
 
  /*
   * Maps
-  * In JS, usually 
   */
- let myMap = new Map([["a", 1], ["b", 2], ["c", 3]]);
+let myMap = new Map([["a", 1], ["b", 2], ["c", 3]]);
 // iterate over map with key and value
 for (let [k, v] of myMap) {
   console.log(k, v);
 }
+// keys to array (Map.keys() returns just iterator!)
+const keysArray = Array.from(myMap.keys());
+// keys are sorted just by insertion order => to sort
+// it by sorting function, you must re-insert elements into the new Map
+var myMapSorted = new Map([...map.entries()].sort());
 
 
 // Strings
 const s = "abcdef";
+const sLower = s.toLowerCase();
+const sUpper = s.toUpperCase();
 let newString = s.substr(1, 2); // = "bc" (second param is length)
 newString = s.slice(1, 2); // = "b" (second param is end index)
 newString = s.slice(1, -1); // = "bcde" (negative index is counted from the end)
@@ -104,6 +135,17 @@ newString = s.slice(1, -1); // = "bcde" (negative index is counted from the end)
 const numbersArray = ["one", "two", "three"];
 numbersArray.join(); // "one,two,three"
 numbersArray.join(", "); // "one, two, three"
+// array explode - split
+const splitted = "my three words".split(" "); // ["my", "three", "words"]
+// string literals
+const tuvData = `
+Porsche 911	26	2,5
+Mercedes B	39	2,6
+Mercedes GLK	50	2,6
+`;
+// substring searching
+s.indexOf("x"); // -1
+s.indexOf("de"); // 3
 // regexps
 const url="http://pes.cz";
 url.match(/(https?):\/\/'/)  // [ 'http://', 'http', index: 0, input: 'http://pes.cz', groups: undefined ]
