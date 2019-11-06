@@ -161,6 +161,22 @@ const d1 = new Date('2018-12-24');  // 2018-12-24T00:00:00.000Z
 const d2 = new Date(2018, 11, 24);  // 2018-12-23T23:00:00.000Z
 d2.toDateString();  // "Mon Dec 24 2018"
 
+
 // print JSON
 obj = {attr: "myattr"}
 console.log(JSON.stringify(obj, null, 2))
+
+// reading files
+const path = require('path');
+const fs = require('fs');
+const directoryPath = path.join(__dirname, 'mydir');
+fs.readdir(directoryPath, (err, files) => {
+  //handling error
+  if (err) {
+    console.log('Unable to scan directory: ' + err);
+    return;
+  }
+  for (file of files) {
+    console.log(file);
+  }
+});
