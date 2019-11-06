@@ -94,15 +94,16 @@ def lists():
 
 def dictionaries():
     # create
-    number_one_players = {'man': 'Andy Murray', 'woman': 'Angelique Kerber'}
+    number_one_players = {'man': 'Novak Djokovic', 'woman': 'Angelique Kerber'}
+
+    # iterate
+    for sex, name in number_one_players.items():
+        print('World No.1 {}: {}'.format(sex, name))
 
     # merging dicts
     en = {1: 'one', 2: 'two'}
     cs = {2: 'dve', 3: 'tri'}   # overwrites the key 2
-    # Python 2
-    en.update(cs)   # {1: 'one', 2: 'dve', 3: 'tri'}
-    # Python 3
-    #en = {**en, **cs}
+    en = {**en, **cs}
 
     # zip two lists into the dict
     keys = ['a', 'b', 'c']
@@ -113,9 +114,9 @@ def dictionaries():
     # ordered dicts
     from collections import OrderedDict
     orig = {
-        'roger': {'gs_titles': 17},
-        'rafa': {'gs_titles': 14},
-        'nole': {'gs_titles': 12},
+        'roger': {'gs_titles': 20},
+        'rafa': {'gs_titles': 18},
+        'nole': {'gs_titles': 16},
         'andy': {'gs_titles': 3}
         }
 
@@ -125,6 +126,11 @@ def dictionaries():
     # dictionary sorted by GS titles
     orddict2 = OrderedDict(sorted(orig.items(), key=lambda t: t[1]['gs_titles']))
     print orddict2  # {roger: ..., rafa: ..., nole: ..., andy: ...}
+
+def lambdas():
+    players = ['roger', 'rafa', 'nole']
+    players_claims = map(lambda player: player+" is the best!", players)
+    print()
 
 
 def classes():
@@ -185,7 +191,7 @@ def iterate_object():
 def printing():
     value1 = "val1"
     value2 = "val2"
-    titles = {'roger': 20, 'rafa': 16}
+    titles = {'roger': 20, 'rafa': 18}
     # python3 style
     print('Just print format args positionally: {}, {}'.format(1, 2))
     print("Printing args from defined position {1} and {0}".format(value1, value2))
@@ -333,7 +339,7 @@ def paths():
 
 
 def working_with_yaml():
-    import yaml
+    import yaml     # from package pyyaml
     # load the config file
     try:
         with open('/path/to/yaml-file.yml', 'r') as stream:
