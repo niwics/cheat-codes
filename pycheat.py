@@ -207,14 +207,15 @@ def printing():
     #from __future__ import print_funtion
     #print("This is the testing error, don't panic!, file=sys.stderr)
 
-    # rounding floats
-    print("%.1f" % 3.141)
     # round float to decimal
-    print('Rounded to decimal: {.0f}'.format(3.14))
+    print('Rounded to decimal: {:.0f}'.format(3.14))
 
-    # print with leading zeros
+    # print with leading zeros (padding)
     for i in range(5):
-        print "%02d" % i
+        # fill int
+        print("{:03}".format(i))
+        # fill string
+        print(str(i).zfill(3))
 
     # print dict (named args)
     print "User %(username)s is from %(city)s. I love %(city)s city!" % {'username': "niwics", 'city': "Brno"}
@@ -224,6 +225,10 @@ def printing():
     import pprint
     pp = pprint.PrettyPrinter(indent=5)
     pp.pprint(hierarchical_dict)
+
+    # dynamically rewriting the output line
+    print("output A", end="\r")
+    print("output B", end="\r")
 
 
 def logging():
