@@ -260,14 +260,53 @@ def regexps():
     # raw strings = r"xyz"
     import re
 
-    # basic searching
+    # basic example
     match = re.search(r"ne+dle", "searching neeedle in the haystack!")
     print match.group(0)    # neeedle
 
-    # precompiling + group matching
+    # precompiling
     regexp = re.compile(r"(\d+):\d+")
     match = regexp.search("arrival in 12:00")
     print "arrival hour: %s" % match.group(1)
+
+    # match / search / findall / finditer
+    s_singleline = "one two two three"
+    s_multiline = """one two two
+    and two
+    two three"""
+    # match - from the begining, single line, first occurence
+    re.match("two", s_singleline)   # None - matches from the begining
+    re.match("\w+ two", s_singleline) # <re.Match object; span=(0, 7), match='one two'>
+    re.match(".*three", s_multiline) # None - matches just first line
+    # search - inside, multiline, first occurence
+    re.search("two", s_singleline)  # <re.Match object; span=(4, 7), match='two'>
+    re.search("two", s_multiline)   # <re.Match object; span=(4, 7), match='two'>
+    re.search("three", s_multiline)   # <re.Match object; span=(24, 29), match='three'>
+    # findall - inside, multiline, all occurences
+    re.findall("two", s_singleline)  # ['two', 'two']
+    re.findall("two", s_multiline)   # ['two', 'two', 'two', 'two']
+    re.findall("three", s_multiline)   # ['three']
+    re.findall("((tw)o?)", s_singleline)    # [('two', 'tw'), ('two', 'tw')]
+    # finditer - inside, multiline, all occurences
+    for match in re.finditer("two", s_multiline):
+        print(match)
+        # <re.Match object; span=(4, 7), match='two'>
+        # <re.Match object; span=(8, 11), match='two'>
+        # <re.Match object; span=(16, 19), match='two'>
+        # <re.Match object; span=(20, 23), match='two'>
+
+    # multiline strings - begining matching
+    s = "one\ntwo"
+    re.search("^two", s)    # None
+    re.search("^two", s, re.MULTILINE)  # <re.Match object; span=(4, 7), match='two'>
+    
+    # named groups matching
+    s = "one two three tw two"
+    pattern = "(?P<first>tw)(?P<second>o)?"
+    re.findall(pattern, s)  # [('tw', 'o'), ('tw', ''), ('tw', 'o')]
+    match = re.search(pattern, s)   # <re.Match object; span=(4, 7), match='two'>
+    match.groups()  # ('tw', 'o')
+    match.groupdict()   # {'first': 'tw', 'second': 'o'}
 
     # simple replacing
     print re.sub(r"@", r"(at)", "me@email.com")   # me(at)email.com
