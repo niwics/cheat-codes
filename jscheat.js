@@ -61,6 +61,7 @@
    toDelete: "i will be deleted"
  }
  myObject.three = "three"
+ "two" in myObject  // true
  delete values.toDelete
  console.log("Object attribute 'one': " + myObject.one);
  // iterate through keys
