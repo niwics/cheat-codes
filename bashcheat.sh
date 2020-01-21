@@ -4,6 +4,12 @@
 #source ~/.profile
 
 # conditions =====================
+# if string is empty
+if [ -z "$var" ] then
+  echo "is empty"
+else
+  echo "not empty"
+fi
 # if directory exists
 dirname=test
 if [ ! -d ${dirname} ]; then
