@@ -118,8 +118,8 @@ def dictionaries():
     from collections import OrderedDict
     orig = {
         'roger': {'gs_titles': 20},
-        'rafa': {'gs_titles': 18},
-        'nole': {'gs_titles': 16},
+        'rafa': {'gs_titles': 19},
+        'nole': {'gs_titles': 17},
         'andy': {'gs_titles': 3}
         }
 
@@ -194,11 +194,11 @@ def iterate_object():
 def printing():
     value1 = "val1"
     value2 = "val2"
-    titles = {'roger': 20, 'rafa': 18}
+    titles = {'roger': 20, 'rafa': 19}
     # python3 style
     print('Just print format args positionally: {}, {}'.format(1, 2))
     print("Printing args from defined position {1} and {0}".format(value1, value2))
-    print("Roger has {roger} GS titles and Rafa {rafa}".format(roger=20, rafa=16))
+    print("Roger has {roger} GS titles and Rafa {rafa}".format(roger=20, rafa=19))
     print("Roger has {roger} GS titles and Rafa {rafa}".format(**titles))
     print('Escaping the curly braces by doubling them - {{}} and normal arg: {}'.format('myarg'))
 
