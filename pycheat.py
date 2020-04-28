@@ -83,6 +83,9 @@ def datatypes():
     # unicode string
     unicode_str = u'my unicode string ěščřžáíé'
 
+    # conversions
+    int("5")
+
 
 def lists():
     l = [1, 2, 'three'] # old-style: l = list(1, 2, 'three')
