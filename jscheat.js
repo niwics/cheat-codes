@@ -15,56 +15,62 @@
 // new style import (ES modules)
 // import {MyComponent} from './lib/MyComponent.js'
 
- /*
-  * Variables
-  * Since ES6 const and let were added.
-  */
- // constant (but is not immutable inside!); block-scoped
- const myConstVariable = 1;
- // could be reassigned; block-scoped
- let myVariable = 2;
- // generic, should be reassigned, function-scoped (when declared in function) or globally scoped
- var myVariable2 = 3;
+/*
+* Variables
+* Since ES6 const and let were added.
+*/
+// constant (but is not immutable inside!); block-scoped
+const myConstVariable = 1;
+// could be reassigned; block-scoped
+let myVariable = 2;
+// generic, should be reassigned, function-scoped (when declared in function) or globally scoped
+var myVariable2 = 3;
 
- // "classical" constants in module scope
- const PRODUCTION_ENV = false;  // upper case by convention
+// "classical" constants in module scope
+const PRODUCTION_ENV = false;  // upper case by convention
 
 
- // shortcut for calling anonymous function
- //() => myVariable
+// shortcut for calling anonymous function
+//() => myVariable
 
- try {
-   throw "My test exception!" // all object could be thrown
- }
- catch (error) {
-   console.error(error);
- }
+try {
+  throw "My test exception!" // all object could be thrown
+}
+catch (error) {
+  if (error instanceof SpecificError)
+    console.error("Specific error: " + error);
+  else
+    throw(error)  // rethrow with preserved stack-trace
+}
  
- /*
-  * Data types
-  */
- console.log(typeof 42); // expected output: "number"
- typeof (() => {}) === 'function'; // true
- // convert string to integer
- const myInt = parseInt("7");
- // weird adding
- const weirdResult = "7" + 1; // "71"
- // object = object
- Object.prototype.toString.call(myObject); // [object Null]
+/*
+ * Data types
+ */
+console.log(typeof 42); // expected output: "number"
+typeof (() => {}) === 'function'; // true
+// convert string to integer
+const myInt = parseInt("7");
+// weird adding
+const weirdResult = "7" + 1; // "71"
+// object = object
+Object.prototype.toString.call(myObject); // [object Null]
 
- /*
-  * Objects
-  */
- let myObject = {
-   one: "String for first item",
-   two: 2,
-   toDelete: "i will be deleted"
- }
- myObject.three = "three"
- "two" in myObject  // true
- delete values.toDelete
- console.log("Object attribute 'one': " + myObject.one);
- // iterate through keys
+/*
+ * Objects
+ */
+let myObject = {
+  one: "String for first item",
+  two: 2,
+  toDelete: "i will be deleted"
+}
+myObject.three = "three"
+// membership
+"two" in myObject  // true
+delete values.toDelete
+console.log("Object attribute 'one': " + myObject.one);
+// print object as JSON
+console.log(JSON.stringify(players))
+// print object properties
 for (let property in myObject) {
   if (myObject.hasOwnProperty(property)) {
       console.log("Property name: " + property + ", value: " + myObject[property]);
