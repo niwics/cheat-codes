@@ -214,3 +214,7 @@ fs.readdir(directoryPath, (err, files) => {
 const pathString = "/some/path/to/file.txt"
 path.dirname(pathString)  // /some/path/to
 path.basename(pathString)  // file.txt
+
+// Math functions
+Math.ceil(0.1)  // 1
+Math.log10(11)  // 1.041392685158225
