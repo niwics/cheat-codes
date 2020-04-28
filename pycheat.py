@@ -203,12 +203,7 @@ def printing():
     print('Escaping the curly braces by doubling them - {{}} and normal arg: {}'.format('myarg'))
 
     # printint to stderr
-    # python 2
-    import sys
-    print >> sys.stderr, "This is the testing error, don't panic!"
-    # for python 3:
-    #from __future__ import print_funtion
-    #print("This is the testing error, don't panic!, file=sys.stderr)
+    print("This is the testing error, don't panic!", file=sys.stderr)
 
     # round float to decimal
     print('Rounded to decimal: {:.0f}'.format(3.14))
