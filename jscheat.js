@@ -208,3 +208,9 @@ fs.readdir(directoryPath, (err, files) => {
     console.log(file);
   }
 });
+
+// path extraction
+// const path = require('path');
+const pathString = "/some/path/to/file.txt"
+path.dirname(pathString)  // /some/path/to
+path.basename(pathString)  // file.txt
