@@ -215,6 +215,14 @@ def printing():
         # fill string
         print(str(i).zfill(3))
 
+    # thousands separator
+    # comma separator works directly
+    print("{:,}".format(1234))  # 1,234
+    # other separators must use locale
+    import locale
+    locale.setlocale(locale.LC_ALL, '')  # Use '' for auto, or force e.g. to 'en_US.UTF-8'
+    print("{:n}".format(1234))  # 1 234
+
     # print dict (named args)
     print "User %(username)s is from %(city)s. I love %(city)s city!" % {'username': "niwics", 'city': "Brno"}
 
