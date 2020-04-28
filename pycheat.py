@@ -579,6 +579,22 @@ def jinja():
         f.write(rendered_output.encode('utf-8'))
 
 
+# Unit tests
+# typical structure: subdirectory "test" with test_*.py files
+import unittest2    # alternatives: nose (compatible), pytest (for large projects)
+class BackwardsCompatibilityTestCase(unittest2.TestCase):
+
+    def setUp(self):
+        self.reference_value = "some_value"
+
+    def tearDown(self):
+        pass
+
+    def test_compatibility_changed_tag(self):
+        self.assertEqual(self.reference_value, "some_value")
+
+
+
 def main():
     print "Main function called"
 
