@@ -89,17 +89,23 @@ for (let prop in myObject) {
 
  // Arrays
  let words = ['one', 'two', 'three'];
- words.push("four");
+ words.push("five");
+ words.splice(3, 0, "four") // insert to the position 3 (and delete 0 items)
+ // array size = length
+ console.log(words.length)  // 5
  words = words.filter(word => word.length > 3);
  // includes (in array) function (test whether item is in array)
  words.includes('one');
+ words.indexOf('two')
  // merge=concat two arrays
- const moreWords = ['five', 'six'];
+ const moreWords = ['six', 'seven'];
  const allWords = words.concat(moreWords);
  // sorting items - non-unicode/local aware
  const sortedWordsBasic = words.sort();
  // sorting items - unicode/local aware
  const sortedWordsUnicode = words.sort((a, b) => a.localeCompare(b));
+ // clone shallow copy of array
+ const wordsCloned = words.slice()
 
 
 // iterating the array
@@ -113,7 +119,7 @@ words.forEach(e => {
 });
 // 3. for..in - loops through the properties of an object - see Objects
 // 4. for..of - ES2015+, loops through the values of an iterable objects
-for (e of words)
+for (const e of words)
   console.log(e);
 
  /*
