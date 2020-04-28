@@ -165,7 +165,7 @@ url.match(/(https?):\/\/'/)  // [ 'http://', 'http', index: 0, input: 'http://pe
 url.match(/abcd/)  // null
 url.match(/\d{4}/)  // null
 
-// Dates
+// Dates (raw)
 const today = new Date(); // 2018-12-24T12:13:14.000Z
 today.getMonth(); // 11 < minus one!
 // reads in UTC
@@ -173,6 +173,21 @@ const d1 = new Date('2018-12-24');  // 2018-12-24T00:00:00.000Z
 // reads in local timezone (in this example "+1:00") and stores in UTC
 const d2 = new Date(2018, 11, 24);  // 2018-12-23T23:00:00.000Z
 d2.toDateString();  // "Mon Dec 24 2018"
+
+// Dates (moment.js)
+import moment from 'moment'
+moment.locale('cs')
+const todayM = moment() // object with actual datetime
+todayM.format()
+todayM.hours()
+todayM.isoWeekday()
+const exampleDate = moment('2020-02-03')
+const todayMidnightM = moment(0, "HH");  // today midnight
+moment(date).from(thisMidnight)
+thisMidnight.add(numberOfDaysToAdd, 'day').format("YYYY-MM-DD")
+moment(effectiveOrCreatedDate).format('llll')
+// dates diff
+
 
 
 // print JSON
