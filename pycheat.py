@@ -612,6 +612,8 @@ def main():
     sp.add_parser('restart', help='Restarts %(prog)s daemon')
     # required
     parser.add_argument('--host', help='Hostname help text', required=True)
+    # long and short variant
+    parser.add_argument('--variants', '-v', help='some help text')
     # default
     parser.add_argument('--port', help='some help text', default=8080)
     # options (possibilities)
@@ -622,7 +624,7 @@ def main():
     #  similar is store_false and store_const)
     parser.add_argument('--dry-run', help='This is bool flag', action='store_true')
     # parse arguments (in case of invalid input, it prints the help and exits)
-    args = parser.parse_args()  # accessing: args.myparam
+    args = parser.parse_args()  # accessing: args.myparam (but "--" params converts dash to underscore automatically)
     # you cannot use reserved keywords like "from" (ex. args.from) - in that case you need a dict:
     # source: https://parezcoydigo.wordpress.com/2012/08/04/from-argparse-to-dictionary-in-python-2-7/
     opts = vars(args)   # accessing: opts['myparam']
