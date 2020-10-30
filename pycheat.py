@@ -106,6 +106,8 @@ def lists():
     int_list = [1, 2, 3, 4]
     print "Even numbers: %s" % filter(lambda i: i % 2 == 0, int_list)
     print "Even numbers: %s" % [i for i in int_list if i % 2 == 0]
+    # diff lists: l - int_list (result: ["three"])
+    lists_diff = [e for e in l if e not in int_list]
 
 
 def dictionaries():
