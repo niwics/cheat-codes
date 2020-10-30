@@ -623,6 +623,8 @@ def main():
     # bool value (store_true sets True when flag is present and it omits the value;
     #  similar is store_false and store_const)
     parser.add_argument('--dry-run', help='This is bool flag', action='store_true')
+    # for name collision with Python keyword, rename the target attribute with "dest" param
+    parser.add_argument('--from', dest='from_' help='Name collision with Python keyword')
     # parse arguments (in case of invalid input, it prints the help and exits)
     args = parser.parse_args()  # accessing: args.myparam (but "--" params converts dash to underscore automatically)
     # you cannot use reserved keywords like "from" (ex. args.from) - in that case you need a dict:
