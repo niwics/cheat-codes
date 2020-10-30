@@ -295,7 +295,7 @@ def regexps():
     s_multiline = """one two two
     and two
     two three"""
-    # match - from the begining, single line, first occurence
+    # match - from the begining (but not to the end!), single line, first occurence
     re.match("two", s_singleline)   # None - matches from the begining
     re.match("\w+ two", s_singleline) # <re.Match object; span=(0, 7), match='one two'>
     re.match(".*three", s_multiline) # None - matches just first line
@@ -325,7 +325,9 @@ def regexps():
     s = "one two three tw two"
     pattern = "(?P<first>tw)(?P<second>o)?"
     re.findall(pattern, s)  # [('tw', 'o'), ('tw', ''), ('tw', 'o')]
+    # find just the first match
     match = re.search(pattern, s)   # <re.Match object; span=(4, 7), match='two'>
+    match.group('first')    # 'tw'
     match.groups()  # ('tw', 'o')
     match.groupdict()   # {'first': 'tw', 'second': 'o'}
 
