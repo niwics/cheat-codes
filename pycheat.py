@@ -405,7 +405,25 @@ def paths():
     import os
     relative_path_to_script = \
         os.path.join(os.path.dirname(__file__), '../another-dir/other-file')
+    # join paths
+    os.path.join('my', 'path')  # 'my/path'
+    # if some fragments use the absolute path, join returns the rightmost unmodified
+    os.path.join('my', 'path', '/tmp')  # '/tmp'
 
+
+def filesystem():
+
+    import os
+    path = "/"
+
+    # scandir:
+    # - iterates through all subdirs
+    # - returns os.DirEntry instances with 'name' and 'path' (including name) attributes
+    for entry in os.scandir(path):
+        # ex. "File named 'passwd' has the path /etc/passwd'"
+        print("File named '{}' has the full path '{}'".format(entry.name, entry.path))
+        # is dir or file?
+        entry.is_dir() or entry.is_file()
 
 def working_with_yaml():
     import yaml     # from package pyyaml
