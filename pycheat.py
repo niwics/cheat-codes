@@ -328,15 +328,17 @@ def dates():
     # print month with leading zeros
     print "This is month: %s" % today_dt.strftime("%-m")   # alternative in print: "%02d"
 
+    # get the year, month etc.
+    datetime.date.today().year
+    datetime.date.today().month
+
     # custom formatting
     # https://docs.python.org/2/library/datetime.html#strftime-and-strptime-behavior
     # Fotmats help: http://strftime.org/
     print today_dt.strftime("Today is the %d of %b in %y")  # Today is the 18 of Nov in 2016
 
     # ISO dates to datetime
-    import dateutil.parser
-    # more robust version
-    dt = dateutil.parser.parse("2016-11-16 09:07:56")
+    dt = datetime.datetime.fromisoformat("2016-11-16 09:07:56")
     # load from the specific format (format ref: https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior)
     dt2 = datetime.datetime.strptime("2016-11-16", "%Y-%m-%d" )
     print dt    # datetime.datetime(2016, 11, 16, 9, 7, 56)
