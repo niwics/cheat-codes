@@ -227,7 +227,7 @@ def printing():
     for i in range(5):
         # fill int
         print("{:03}".format(i))
-        # fill string
+        # fill string (lpad padding)
         print(str(i).zfill(3))
 
     # thousands separator
