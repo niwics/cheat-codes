@@ -424,6 +424,8 @@ def filesystem():
         print("File named '{}' has the full path '{}'".format(entry.name, entry.path))
         # is dir or file?
         entry.is_dir() or entry.is_file()
+        # fix OS X unicode naming (decomposition)
+        name_correct = unicodedata.normalize('NFC', entry.name)
 
 def working_with_yaml():
     import yaml     # from package pyyaml
