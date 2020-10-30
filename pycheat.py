@@ -29,6 +29,19 @@ def exceptions():
         raise MyException('Some description')
     except MyException as e:
         print('The error occurred: {}').format(e)
+    
+    raise Exception("Generic exception occured")
+
+    # typical exceptions:
+    # AttributeError
+    # IndexError
+    # KeyError
+    # NotImplementedError
+    # RuntimeError - most generic
+    # TypeError
+    # ValueError
+    # OSError - errors that come from outside of Python (the operating system, filesystem, etc.)
+    #         - covers former EnvironmentError, IOError...
 
 # Enum class
 # usage: print Colours.Red
