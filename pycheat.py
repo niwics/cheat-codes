@@ -44,7 +44,7 @@ def exceptions():
     #         - covers former EnvironmentError, IOError...
 
 # Enum class
-# usage: print Colours.Red
+# usage: print(Colours.Red)
 class Colours:
     Red, Green, Blue, White = range(4)
 
