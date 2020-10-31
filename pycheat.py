@@ -556,6 +556,21 @@ def file_info():
     statinfo = os.stat('somefile.txt')
     statinfo.st_size # 926L (size in bytes)
 
+def exif_reading():
+    from exif import Image
+    path = "/"
+    # get the file create date from EXIF
+    with open(path, 'rb') as image_file:
+        image = None
+        try:
+            image = Image(image_file)
+        except Exception as e:
+            pass
+        if not image or not image.has_exif:
+            logger.warning('The file "{}" has no EXIF.'.format(path))
+            continue
+        print("datetime: {}".format(image['datetime']))
+
 
 def requests_parsing():
     import requests
