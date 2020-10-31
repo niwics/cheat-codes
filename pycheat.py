@@ -414,7 +414,9 @@ def paths():
 def filesystem():
 
     import os
-    path = "/"
+    import shutil
+    from pathlib import Path
+    path = "/tmp"
 
     # scandir:
     # - iterates through all subdirs
@@ -426,6 +428,49 @@ def filesystem():
         entry.is_dir() or entry.is_file()
         # fix OS X unicode naming (decomposition)
         name_correct = unicodedata.normalize('NFC', entry.name)
+    
+    # list files in the directory (non-recursive)
+    for f in os.listdir(path):
+        print(f)
+
+    # rename or move the file or directory
+    source_file = "/tmp/source.txt"
+    try:
+        shutil.move(source_file, "/tmp/destination.txt")
+    except OSError as e:
+        print('Error moving file "{}": {}'.format(source_file, e))
+    
+    # deleting
+    file_to_delete = "/tmp/test.txt"
+    dir_to_delete = "/tmp/testdir"
+    # delete file
+    try:
+        os.remove(file_to_delete)
+    except OSError as e:
+        print('Error: "{}": {}'.format(file_to_delete, e.strerror))
+    # delete files with pathlib and glob filter
+    # rglob() for recursive glob
+    for f in Path('/tmp').glob('*.txt'):
+        try:    
+            f.unlink()
+        except OSError as e:
+            print('Error: "{}": {}'.format(f, e.strerror))
+    # delete empty dir
+    try:
+        os.rmdir(dir_to_delete)
+    except OSError as e:
+        print('Error: "{}": {}'.format(dir_to_delete, e.strerror))
+    # delete empty dir with pathlib
+    dir_path = Path(dir_to_delete)
+    try:
+        dir_path.rmdir()
+    except OSError as e:
+        print('Error: "{}": {}'.format(dir_to_delete, e.strerror))
+    # delete non-empty dir
+    try:
+        shutil.rmtree(dir_to_delete)
+    except OSError as e:
+        print('Error: "{}": {}'.format(dir_to_delete, e.strerror))
 
 def working_with_yaml():
     import yaml     # from package pyyaml
