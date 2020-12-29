@@ -26,6 +26,7 @@ date -d "12 hours ago" '+%Y-%m-%d'
 
 # artihmetics =====================
 COUNT=$(expr $FIRSTV - $SECONDV)
+MYVAR_INCREMENTED=$(($MYVAR+1))
 
 
 # line filtering/skipping =====================
