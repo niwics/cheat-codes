@@ -222,6 +222,8 @@ thisMidnight.add(numberOfDaysToAdd, 'day').format("YYYY-MM-DD")
 moment(effectiveOrCreatedDate).format('llll')
 // dates diff
 
+// wait / sleep / setTimeout
+await new Promise(resolve => setTimeout(resolve, 3000))
 
 // print JSON
 obj = {attr: "myattr"}
