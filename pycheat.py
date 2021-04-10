@@ -256,6 +256,17 @@ def printing():
     print("output B", end="\r")
 
 
+def inputs():
+
+    # input the normal string value
+    print("Write something:")
+    something = input()
+
+    # input the password
+    from getpass import getpass
+    password = getpass("Tell me your secret password!") 
+
+
 def logging():
     v1 = "variable for testing"
     v2 = 123
