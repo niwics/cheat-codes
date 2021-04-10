@@ -9,8 +9,11 @@
 // export const MyComponent2 = () => {}
 // export function MyComponent3 () {}
 // export class MyComponent4 () {}
+// -- How to export object:
+// const myobject = {}
+// export {myobject}
 // ------ in index.js:
-// old style import
+// old style (CommonJS) import
 // const {MyComponent} = require('./lib/MyComponent.js');
 // new style import (ES modules)
 // import {MyComponent} from './lib/MyComponent.js'
@@ -23,12 +26,14 @@
 const myConstVariable = 1;
 // could be reassigned; block-scoped
 let myVariable = 2;
-// generic, should be reassigned, function-scoped (when declared in function) or globally scoped
+// generic, could be reassigned, function-scoped (when declared in function) or globally scoped
 var myVariable2 = 3;
 
-// "classical" constants in module scope
+// "classical" upper-case constants: primitive types only and usually on the module scope
 const PRODUCTION_ENV = false;  // upper case by convention
 
+// destructuring
+const [var1, var2] = [10, 20] // var1=10, var2=20
 
 // shortcut for calling anonymous function
 //() => myVariable
@@ -50,6 +55,11 @@ console.log(typeof 42); // expected output: "number"
 typeof (() => {}) === 'function'; // true
 // convert string to integer
 const myInt = parseInt("7");
+// is a valid number?
+const iamNumber = !isNaN("ab10num");
+// convert number to string
+const num = 123;
+const stringVal = num.toString();
 // weird adding
 const weirdResult = "7" + 1; // "71"
 // object = object
@@ -64,7 +74,7 @@ let myObject = {
   toDelete: "i will be deleted"
 }
 myObject.three = "three"
-// membership
+// membership (test whether the object contains the key)
 "two" in myObject  // true
 delete values.toDelete
 console.log("Object attribute 'one': " + myObject.one);
@@ -126,6 +136,10 @@ for (const e of words)
   * Maps
   */
 let myMap = new Map([["a", 1], ["b", 2], ["c", 3]]);
+myMap.set('d', 4);
+myMap.set('c', 333);
+myMap.has('d')
+myMap.get('d')
 // iterate over map with key and value
 for (let [k, v] of myMap) {
   console.log(k, v);
@@ -136,11 +150,34 @@ const keysArray = Array.from(myMap.keys());
 // it by sorting function, you must re-insert elements into the new Map
 var myMapSorted = new Map([...map.entries()].sort());
 
+/*
+ * Set
+ */
+const mySet = new Set()
+mySet.add(2)
+mySet.has(3)
+mySet.delete(2)
+mySet.clear()
 
 // Strings
+const singleQuotes = 'mystring'
+const doubleQuotes = "mystring"
+// template literals
+const variable = "MYVAR"
+const templateLiteralString = `This is my templated literal string with ${variable} and its first char: ${variable[0]}`
+// string literals (multiline strings) with heredoc syntax
+const heredocString = `
+This
+is a
+Multiple Line
+String
+`
 const s = "abcdef";
 const sLower = s.toLowerCase();
 const sUpper = s.toUpperCase();
+// uppercase first letter (aka UCFirst)
+const ucfirst = s.charAt(0).toUpperCase() + s.slice(1)
+const trimmed = " abc ".trim()  // "abc"
 let newString = s.substr(1, 2); // = "bc" (second param is length)
 newString = s.slice(1, 2); // = "b" (second param is end index)
 newString = s.slice(1, -1); // = "bcde" (negative index is counted from the end)
@@ -150,15 +187,12 @@ numbersArray.join(); // "one,two,three"
 numbersArray.join(", "); // "one, two, three"
 // array explode - split
 const splitted = "my three words".split(" "); // ["my", "three", "words"]
-// string literals
-const tuvData = `
-Porsche 911	26	2,5
-Mercedes B	39	2,6
-Mercedes GLK	50	2,6
-`;
 // substring searching
 s.indexOf("x"); // -1
 s.indexOf("de"); // 3
+// fill string - lpad/rpad
+// string.padStart(targetLength [, padString = " "])
+"12".padStart(5, "0") // 00012
 // regexps
 const url="http://pes.cz";
 url.match(/(https?):\/\/'/)  // [ 'http://', 'http', index: 0, input: 'http://pes.cz', groups: undefined ]
@@ -187,7 +221,6 @@ moment(date).from(thisMidnight)
 thisMidnight.add(numberOfDaysToAdd, 'day').format("YYYY-MM-DD")
 moment(effectiveOrCreatedDate).format('llll')
 // dates diff
-
 
 
 // print JSON
