@@ -28,6 +28,10 @@ date -d "12 hours ago" '+%Y-%m-%d'
 COUNT=$(expr $FIRSTV - $SECONDV)
 MYVAR_INCREMENTED=$(($MYVAR+1))
 
+# strings
+# OS X: cut the last char
+echo "${myvar%?}"
+
 
 # line filtering/skipping =====================
 # get first three lines
@@ -43,11 +47,19 @@ echo "/test/my/path" | sed -e 's/.*\/\(.*\)$/\1/g'  # path
 # filter some cols
 echo "one two three" | cut -d " " -f 1,3  # one three (necessary to set the delimiter!)
 
+# grep
+# recursive - process all subdirectories
+grep -R /some/path | grep "myfile"
+
 # iterate over lines =====================
 ls -l /my/path | while read line
 do
   echo $line
 done
+
+# iterate by lines of file
+input="/tmp/somefile"
+while IFS= read -r line; do echo "${line}"; done < $input
 
 # iterate over the array
 MY_NUMBERS=( one two threee )
