@@ -85,7 +85,8 @@ def datatypes():
     # determine iterables - str, dict, list...
     my_var = [1, 2, 3]
     import collections
-    print "Is my_var iterable? - %s" % isinstance(my_var, collections.Iterable)
+    print("Is my_var string? - {}".format(isinstance("mystring", str)))
+    print("Is my_var iterable? - {}".format(isinstance(my_var, collections.Iterable)))
 
     # strings
     # interpolation can be made with both single or double quotes, but usually used with double
@@ -95,6 +96,39 @@ def datatypes():
     raw_str = r'this is raw string - all special characters has no meaning - {} abcd \n\n etc.'
     # unicode string
     unicode_str = u'my unicode string ěščřžáíé'
+    # heredoc syntax for
+    
+    # lower and upper case
+    single_quote_str.upper()
+    single_quote_str.lower()
+
+    # formatting
+    value1 = "val1"
+    value2 = "val2"
+    titles = {'roger': 20, 'rafa': 20}
+    print("Just print format args positionally: {}, {}".format(1, 2))
+    print("Printing args from defined position {1} and {0}".format(value1, value2))
+    print("Roger has {roger} GS titles and Rafa {rafa}".format(roger=20, rafa=20))
+    print("Roger has {roger} GS titles and Rafa {rafa}".format(**titles))
+    print('Escaping the curly braces by doubling them - {{}} and normal arg: {}'.format('myarg'))
+
+    # round float to decimal
+    print('Rounded to decimal: {:.0f}'.format(3.14))
+
+    # add leading zeros (padding)
+    for i in range(5):
+        # fill int to 3 chars (zero lpad padding)
+        print("{:03}".format(i))
+        # fill string (zero lpad padding)
+        print(str(i).zfill(3))
+
+    # thousands separator
+    # comma separator works directly
+    print("{:,}".format(1234))  # 1,234
+    # other separators must use locale
+    import locale
+    locale.setlocale(locale.LC_ALL, '')  # Use '' for auto, or force e.g. to 'en_US.UTF-8'
+    print("{:n}".format(1234))  # 1 234
 
     # conversions
     int("5")
@@ -207,39 +241,9 @@ def iterate_object():
 
 
 def printing():
-    value1 = "val1"
-    value2 = "val2"
-    titles = {'roger': 20, 'rafa': 20}
-    # python3 style
-    print('Just print format args positionally: {}, {}'.format(1, 2))
-    print("Printing args from defined position {1} and {0}".format(value1, value2))
-    print("Roger has {roger} GS titles and Rafa {rafa}".format(roger=20, rafa=20))
-    print("Roger has {roger} GS titles and Rafa {rafa}".format(**titles))
-    print('Escaping the curly braces by doubling them - {{}} and normal arg: {}'.format('myarg'))
 
     # printint to stderr
     print("This is the testing error, don't panic!", file=sys.stderr)
-
-    # round float to decimal
-    print('Rounded to decimal: {:.0f}'.format(3.14))
-
-    # print with leading zeros (padding)
-    for i in range(5):
-        # fill int
-        print("{:03}".format(i))
-        # fill string (lpad padding)
-        print(str(i).zfill(3))
-
-    # thousands separator
-    # comma separator works directly
-    print("{:,}".format(1234))  # 1,234
-    # other separators must use locale
-    import locale
-    locale.setlocale(locale.LC_ALL, '')  # Use '' for auto, or force e.g. to 'en_US.UTF-8'
-    print("{:n}".format(1234))  # 1 234
-
-    # print dict (named args)
-    print "User %(username)s is from %(city)s. I love %(city)s city!" % {'username': "niwics", 'city': "Brno"}
 
     # Pretty-printing
     hierarchical_dict = {'a': 1, 'b': [{'ba': 2, 'bb': 3}]}
