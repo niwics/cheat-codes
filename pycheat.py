@@ -363,6 +363,7 @@ def dates():
     # get the year, month etc.
     datetime.date.today().year
     datetime.date.today().month
+    datetime.date.today().day
 
     # custom formatting
     # https://docs.python.org/2/library/datetime.html#strftime-and-strptime-behavior
@@ -372,7 +373,7 @@ def dates():
     # ISO dates to datetime
     dt = datetime.datetime.fromisoformat("2016-11-16 09:07:56")
     # load from the specific format (format ref: https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior)
-    dt2 = datetime.datetime.strptime("2016-11-16", "%Y-%m-%d" )
+    dt2 = datetime.datetime.strptime("2016-11-16", "%Y-%m-%d")
     print dt    # datetime.datetime(2016, 11, 16, 9, 7, 56)
 
 
