@@ -435,7 +435,7 @@ def filesystem():
     path = "/tmp"
 
     # scandir:
-    # - iterates through all subdirs
+    # - iterates through all files and dirs under the given path (but not recursively into the deep)
     # - returns os.DirEntry instances with 'name' and 'path' (including name) attributes
     for entry in os.scandir(path):
         # ex. "File named 'passwd' has the path /etc/passwd'"
@@ -443,7 +443,7 @@ def filesystem():
         # is dir or file?
         entry.is_dir() or entry.is_file()
         # fix OS X unicode naming (decomposition)
-        name_correct = unicodedata.normalize('NFC', entry.name)
+        name_correct =  
     
     # list files in the directory (non-recursive)
     for f in os.listdir(path):
@@ -556,6 +556,8 @@ def write_file():
 def read_file():
     write_file()
     with open('/tmp/pycheat-test-file') as f:
+        # read the whole file at once
+        whole_file = f.read()
         # read all at once to the list of lines
         lines_list = f.readlines()
         print lines_list
