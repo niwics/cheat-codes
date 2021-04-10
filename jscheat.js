@@ -229,11 +229,15 @@ await new Promise(resolve => setTimeout(resolve, 3000))
 obj = {attr: "myattr"}
 console.log(JSON.stringify(obj, null, 2))
 
-// reading files
+// reading files (in node environment, not in the browser!)
 const path = require('path');
-const fs = require('fs');
+import { readFileSync, readdir } from 'fs'
+// read the file at once
+// encoding must be set, unless binary is returned
+const myString = readFileSync('/tmp/my_file.txt', 'ascii') // encoding!
+// read files from the directory
 const directoryPath = path.join(__dirname, 'mydir');
-fs.readdir(directoryPath, (err, files) => {
+readdir(directoryPath, (err, files) => {
   //handling error
   if (err) {
     console.log('Unable to scan directory: ' + err);
