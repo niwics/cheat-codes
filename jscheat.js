@@ -173,8 +173,10 @@ Multiple Line
 String
 `
 const s = "abcdef";
-const sLower = s.toLowerCase();
-const sUpper = s.toUpperCase();
+// normalize string - convert locale chars to ASCII chars
+const normalized = s.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+const sLower = s.toLowerCase()
+const sUpper = s.toUpperCase()
 // uppercase first letter (aka UCFirst)
 const ucfirst = s.charAt(0).toUpperCase() + s.slice(1)
 const trimmed = " abc ".trim()  // "abc"
