@@ -198,6 +198,11 @@ const url="http://pes.cz";
 url.match(/(https?):\/\/'/)  // [ 'http://', 'http', index: 0, input: 'http://pes.cz', groups: undefined ]
 url.match(/abcd/)  // null
 url.match(/\d{4}/)  // null
+// replace
+// simple replace performs the replace just on the first occurence
+"abcabc".replace("b", "_")  // "a_cabc"
+// replace all
+"abcabc".replace(new RegExp("b", 'g'), "_") // "a_ca_c"
 
 // Dates (raw)
 const today = new Date(); // 2018-12-24T12:13:14.000Z
