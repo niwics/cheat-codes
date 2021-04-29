@@ -232,21 +232,22 @@ console.log(JSON.stringify(obj, null, 2))
 // reading files (in node environment, not in the browser!)
 const path = require('path');
 import { readFileSync, readdir } from 'fs'
+
 // read the file at once
 // encoding must be set, unless binary is returned
 const myString = readFileSync('/tmp/my_file.txt', 'ascii') // encoding!
 // read files from the directory
-const directoryPath = path.join(__dirname, 'mydir');
-readdir(directoryPath, (err, files) => {
-  //handling error
-  if (err) {
-    console.log('Unable to scan directory: ' + err);
-    return;
+const directoryPath = path.join(__dirname, 'mydir')
+import { readdir } from 'fs/promises'
+try {
+  const filenames = await readdir(directoryPath)
+  for (const filename of filenames) {
+    console.log(filename)
   }
-  for (file of files) {
-    console.log(file);
-  }
-});
+}
+catch (err) {
+  console.error('Unable to scan directory: ' + err)
+}
 
 // path extraction
 // const path = require('path');
