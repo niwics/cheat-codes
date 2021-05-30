@@ -215,10 +215,23 @@ const d1 = new Date('2018-12-24');  // 2018-12-24T00:00:00.000Z
 const d2 = new Date(2018, 11, 24);  // 2018-12-23T23:00:00.000Z
 d2.toDateString();  // "Mon Dec 24 2018"
 
-// Dates (moment.js)
-import moment from 'moment'
-moment.locale('cs')
-const todayM = moment() // object with actual datetime
+// Dates (luxon.js)
+import {DateTime} from "luxon"
+// construct
+const now = DateTime.now() // object with actual datetime
+now.toJSDate() // "2021-04-20T19:11:31.598Z"
+const pastFromLocal = DateTime.local(2021, 4, 15, 13,33)
+const pastFromIso = DateTime.fromISO("2021-04-20T13:33")
+// diffs
+now.diff(DateTime.fromISO(dueDate), ['days']).values.days // 5.178962164351852
+// locale formatting
+DateTime.local(2021, 4, 21, 11, 33).toLocaleString()  // '21. 4. 2021'
+DateTime.local(2021, 4, 21, 11, 33).toLocaleString(DateTime.DATETIME_MED) // '21. 4. 2021 11:33'
+// relative - string formatting
+dateFromLocal.toRelative()  // "před 5 dny"
+DateTime.local(2021, 4, 21, 13,33).toRelative() // "za 19 hodin"
+DateTime.local(2021, 4, 21, 13,33).toRelativeCalendar() // "zítra"
+
 todayM.format()
 todayM.hours()
 todayM.isoWeekday()
