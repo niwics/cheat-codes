@@ -195,7 +195,7 @@ s.indexOf("de"); // 3
 // fill string - lpad/rpad
 // string.padStart(targetLength [, padString = " "])
 "12".padStart(5, "0") // 00012
-// regexps with unicode
+// regexps with unicode (https://javascript.info/regexp-unicode)
 const url="http://pes.cz/koření";
 url.match(/(https?):\/\/'/)  // [ 'http://', 'http', index: 0, input: 'http://pes.cz/koření', groups: undefined ]
 url.match(/abcd/)  // null
