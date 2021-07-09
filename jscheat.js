@@ -195,11 +195,14 @@ s.indexOf("de"); // 3
 // fill string - lpad/rpad
 // string.padStart(targetLength [, padString = " "])
 "12".padStart(5, "0") // 00012
-// regexps
-const url="http://pes.cz";
-url.match(/(https?):\/\/'/)  // [ 'http://', 'http', index: 0, input: 'http://pes.cz', groups: undefined ]
+// regexps with unicode
+const url="http://pes.cz/koření";
+url.match(/(https?):\/\/'/)  // [ 'http://', 'http', index: 0, input: 'http://pes.cz/koření', groups: undefined ]
 url.match(/abcd/)  // null
 url.match(/\d{4}/)  // null
+url.match(/cz\/\w+/)  // cuts on unicode char: ['cz/ko', index: 11, input: 'http://pes.cz/koření', groups: undefined]
+url.match(/cz\/\p{L}+/) // null - no "u" flag set!
+url.match(/cz\/\p{L}+/u)  // ['cz/koření', index: 11, input: 'http://pes.cz/koření', groups: undefined]
 // replace
 // simple replace performs the replace just on the first occurence
 "abcabc".replace("b", "_")  // "a_cabc"
