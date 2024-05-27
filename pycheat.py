@@ -12,8 +12,9 @@ reload(pycheat)
 If you want to call this file directly, try to execute from shell: pycheat.py -h
 """
 
-# Module constant - https://www.python.org/dev/peps/pep-0008/#constants
+# Module constant - https://www.python.org/dev/peps/pep-0008/#constants - read only
 MY_MODULE_CONSTANT = "Module constant"
+# Module variables (global) are not supported - they are just read-only!
 
 # Exceptions
 class MyException(Exception):
@@ -32,7 +33,7 @@ def exceptions():
     
     raise Exception("Generic exception occured")
 
-    # typical exceptions:
+    # Built-in Exceptions:
     # AttributeError
     # IndexError
     # KeyError
@@ -42,6 +43,37 @@ def exceptions():
     # ValueError
     # OSError - errors that come from outside of Python (the operating system, filesystem, etc.)
     #         - covers former EnvironmentError, IOError...
+    # -------------
+    # AssertionError - Raised when an assert statement fails.
+	# AttributeError - Raised when attribute assignment or reference fails.
+	# EOFError - Raised when the input() function hits end-of-file condition.
+    # FloatingPointError - Raised when a floating point operation fails.		
+    # GeneratorExit - Raise when a generator's close() method is called.
+    # ImportError - Raised when the imported module is not found.
+    # IndexError - Raised when the index of a sequence is out of range.
+    # KeyError - Raised when a key is not found in a dictionary.
+    # KeyboardInterrupt - Raised when the user hits the interrupt key (Ctrl+C or Delete).
+    # MemoryError - Raised when an operation runs out of memory.
+    # NameError - Raised when a variable is not found in local or global scope.
+    # NotImplementedError - Raised by abstract methods.
+    # OSError - Raised when system operation causes system related error.
+    # OverflowError - Raised when the result of an arithmetic operation is too large to be represented.
+    # ReferenceError - Raised when a weak reference proxy is used to access a garbage collected referent.
+    # RuntimeError - Raised when an error does not fall under any other category.
+    # StopIteration - Raised by next() function to indicate that there is no further item to be returned by iterator.
+    # SyntaxError - Raised by parser when syntax error is encountered.
+    # IndentationError - Raised when there is incorrect indentation.
+    # TabError - Raised when indentation consists of inconsistent tabs and spaces.
+    # SystemError - Raised when interpreter detects internal error.
+    # SystemExit - Raised by sys.exit() function.
+    # TypeError - Raised when a function or operation is applied to an object of incorrect type.
+    # UnboundLocalError - Raised when a reference is made to a local variable in a function or method, but no value has been bound to that variable.
+    # UnicodeError - Raised when a Unicode-related encoding or decoding error occurs.
+    # UnicodeEncodeError - Raised when a Unicode-related error occurs during encoding.
+    # UnicodeDecodeError - Raised when a Unicode-related error occurs during decoding.
+    # UnicodeTranslateError - Raised when a Unicode-related error occurs during translating.
+    # ValueError - Raised when a function gets an argument of correct type but improper value.
+    # ZeroDivisionError - Raised when the second operand of division or modulo operation is zero.
 
 # Enum class
 # usage: print(Colours.Red)
@@ -77,15 +109,20 @@ def docstrings(param1, param2):
     return "example string"
 
 def datatypes():
+    my_variable = 3.14
+    # print the type
+    print(type(my_variable))
+
     import numbers
     # is the variable a number?
-    my_variable = 3.14
     isinstance(my_variable, numbers.Number)
 
     # determine iterables - str, dict, list...
     my_var = [1, 2, 3]
     import collections
     print("Is my_var string? - {}".format(isinstance("mystring", str)))
+    print("Is my_var list? - {}".format(isinstance("mystring", list)))
+    # iterable = list, dict, ...
     print("Is my_var iterable? - {}".format(isinstance(my_var, collections.Iterable)))
 
     # strings
@@ -134,11 +171,18 @@ def datatypes():
     int("5")
 
 
+def strings():
+    # substring: [start:end]
+    "onetwothree"[0:4]  # "onet"
+    "onetwothree"[2:3]  # "e"
+
 def lists():
     l = [1, 2, 'three'] # old-style: l = list(1, 2, 'three')
     # filter the list
     int_list = [1, 2, 3, 4]
+    # lambda function
     print "Even numbers: %s" % filter(lambda i: i % 2 == 0, int_list)
+    # list comprehension
     print "Even numbers: %s" % [i for i in int_list if i % 2 == 0]
     # diff lists: l - int_list (result: ["three"])
     lists_diff = [e for e in l if e not in int_list]
@@ -356,9 +400,12 @@ def dates():
     today_dt = datetime.datetime.now() # type datetime
     today_date = datetime.date.today()   # type date
     today_date2 = today_dt.date()   # datetime to date
-    print "Current ISO date without time: %s" % today_date  # "2016-11-14"
+    print("Current ISO date without time: {}".format(today_date))  # "2016-11-14"
+    print("Current ISO date without time from datetime: {}".format(today_dt.date()))  # "2016-11-14"
+    # Explicit ISO format - but it is redundant
+    print("Current ISO date without time from datetime: {}".format(today_dt.date().isoformat()))  # "2016-11-14"
     # print month with leading zeros
-    print "This is month: %s" % today_dt.strftime("%-m")   # alternative in print: "%02d"
+    print("This is month: {}".format(today_dt.strftime("%-m")))   # alternative in print: "%02d"
 
     # get the year, month etc.
     datetime.date.today().year
@@ -375,6 +422,9 @@ def dates():
     # load from the specific format (format ref: https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior)
     dt2 = datetime.datetime.strptime("2016-11-16", "%Y-%m-%d")
     print dt    # datetime.datetime(2016, 11, 16, 9, 7, 56)
+
+    # date add and diff - substracting and adding
+    dt = datetime.datetime.today() - datetime.timedelta(days=7) # minus 7 days
 
 
 def generate_date_ranges(start_date_str, end_date_str):
@@ -426,6 +476,10 @@ def paths():
     # if some fragments use the absolute path, join returns the rightmost unmodified
     os.path.join('my', 'path', '/tmp')  # '/tmp'
 
+    # extraction the parts of the path
+    os.path.dirname("/this/is/path/for/file.txt")  # /this/is/path/for
+    os.path.basename("/this/is/path/for/file.txt")  # file.txt
+
 
 def filesystem():
 
@@ -433,6 +487,10 @@ def filesystem():
     import shutil
     from pathlib import Path
     path = "/tmp"
+
+    # file exists
+    from os.path import exists
+    file_exists = exists('path/to/my/file')
 
     # scandir:
     # - iterates through all files and dirs under the given path (but not recursively into the deep)
@@ -488,6 +546,13 @@ def filesystem():
     except OSError as e:
         print('Error: "{}": {}'.format(dir_to_delete, e.strerror))
 
+def parsing_csv():
+    import csv
+    with open('my/file.csv', newline='') as csvfile:
+        reader = csv.reader(csvfile, delimiter=' ', quotechar='|')
+        for row in reader:
+            print(', '.join(row))
+
 def working_with_yaml():
     import yaml     # from package pyyaml
     # load the config file
@@ -496,6 +561,11 @@ def working_with_yaml():
             config = yaml.safe_load(stream)
     except IOError as e:
         print >> sys.stderr, "Could not open the file: %s" % e
+
+def exec_subprocess():
+    import subprocess
+    subprocess.run(["ls", "-l"])    # prints output directly to stdout/stderr
+    stdout_result = subprocess.check_output(["ls", "-l"])   # catches output to the variable
 
 
 def multiprocessing_worker(worker_id, sleep_seconds):
@@ -598,6 +668,17 @@ def requests_parsing():
     if r.status_code != 200:
         print "Error in the request: %s" % r
     #response attributes: r.headers, r.encoding, r.text, r.json()
+
+
+def mysql_connector():
+    #pip3 install mysql-connector-python
+    import mysql.connector
+    cnx = mysql.connector.connect(host="localhost", user="myuser", password="mypass")
+    cursor = cnx.cursor()
+    query = "SELECT id, name FROM users WHERE id = %s"
+    cursor.execute(query, (123))
+    for (id, name) in cursor:
+        print("user #{} has name: {}".format(id, name))
 
 
 def sftp_uploading():
@@ -722,11 +803,13 @@ def main():
                                      # ArgumentDefaultsHelpFormatter for displaying
                                      # default values in help
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    # positional required parameter
+    parser.add_argument('filename', help='Filename is the positional required parameter')
     # group of exclusive options
     sp = parser.add_subparsers(dest='subparser_value')
-    sp.add_parser('start', help='Starts %(prog)s daemon')
-    sp.add_parser('stop', help='Stops %(prog)s daemon')
-    sp.add_parser('restart', help='Restarts %(prog)s daemon')
+    sp.add_argument('start', help='Starts %(prog)s daemon')
+    sp.add_argument('stop', help='Stops %(prog)s daemon')
+    sp.add_argument('restart', help='Restarts %(prog)s daemon')
     # required
     parser.add_argument('--host', help='Hostname help text', required=True)
     # long and short variant
@@ -743,7 +826,8 @@ def main():
     # for name collision with Python keyword, rename the target attribute with "dest" param
     parser.add_argument('--from', dest='from_' help='Name collision with Python keyword')
     # parse arguments (in case of invalid input, it prints the help and exits)
-    args = parser.parse_args()  # accessing: args.myparam (but "--" params converts dash to underscore automatically)
+    #args = parser.parse_args()  takes argv by default
+    args = parser.parse_args("my testing args")  # accessing: args.myparam (but "--" params converts dash to underscore automatically)
     # you cannot use reserved keywords like "from" (ex. args.from) - in that case you need a dict:
     # source: https://parezcoydigo.wordpress.com/2012/08/04/from-argparse-to-dictionary-in-python-2-7/
     opts = vars(args)   # accessing: opts['myparam']
